@@ -1,0 +1,32 @@
+theme = "onedark"
+
+[editor]
+line-number = "absolute"
+true-color = true
+scroll-lines = 1
+cursorline = true
+bufferline = "always"
+color-modes = true
+idle-timeout = 0
+[editor.lsp]
+display-inlay-hints = true
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
+
+[editor.file-picker]
+hidden = false
+
+# [keys.insert]
+# up = "no_op"
+# down = "no_op"
+# left = "no_op"
+# right = "no_op"
+
+# [keys.normal]
+# up = "no_op"
+# down = "no_op"
+# left = "no_op"
+# right = "no_op"
