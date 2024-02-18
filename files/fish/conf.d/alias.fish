@@ -3,8 +3,8 @@ alias ls='eza -Gs type --icons' # --grid --sort
 alias ll='eza -als type --icons' # --all --long --sort
 
 # Modern 'cat' command
-alias show='bat --theme="OneHalfDark"'
-alias cat='bat --theme="OneHalfDark"'
+alias show='bat --theme="gruvbox-dark"'
+alias cat='bat --theme="gruvbox-dark"'
 
 # Find 
 alias find='fd'
@@ -14,6 +14,8 @@ alias find='fd'
 
 # Reload fish config
 alias reload='source $HOME/.config/fish/config.fish'
+
+alias clean_nvim='rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim'
 
 # Editor
 # alias vim='hx'
