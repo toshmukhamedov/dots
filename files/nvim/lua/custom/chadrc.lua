@@ -1,19 +1,24 @@
 ---@type ChadrcConfig
 local M = {}
 local opt = vim.opt
--- local g = vim.g
+local o = vim.o
 
 -- Indenting
 opt.shiftwidth = 4
 opt.tabstop = 4
 opt.softtabstop = 4
+opt.cursorline = true
 
 -- Numbers
+opt.scrolloff = 10
 opt.relativenumber = true
 opt.numberwidth = 2
 opt.textwidth = 120
 opt.colorcolumn = "+1"
 opt.ruler = false
+
+-- Options
+-- o.background = "dark"
 
 -- Ignore case on command mode
 opt.smartcase = false
@@ -28,7 +33,7 @@ M.ui = {
         },
     },
     lsp_semantic_tokens = true,
-    theme = 'gruvbox',
+    theme = 'catppuccin',
     statusline = {
         theme = "minimal"
     },
@@ -43,6 +48,9 @@ M.ui = {
 
 -- Custom plugins
 M.plugins = "custom.plugins"
+
+-- Custom mappings
+M.mappings = require "custom.mappings"
 
 -- Fix cursor shape
 vim.cmd([[
