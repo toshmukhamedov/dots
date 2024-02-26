@@ -3,8 +3,8 @@ alias ls='eza -Gs type --icons' # --grid --sort
 alias ll='eza -als type --icons' # --all --long --sort
 
 # Modern 'cat' command
-alias show='bat --theme="gruvbox-dark"'
-alias cat='bat --theme="gruvbox-dark"'
+alias show='bat --theme="base16"'
+alias cat='bat --theme="base16"'
 
 # Find 
 alias find='fd'

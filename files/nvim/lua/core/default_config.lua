@@ -5,22 +5,9 @@ M.options = {
 }
 
 M.ui = {
-  ------------------------------- base46 -------------------------------------
-  -- hl = highlights
-  hl_add = {},
-  hl_override = {},
-  changed_themes = {},
-  theme_toggle = { "onedark", "one_light" },
-  theme = "onedark", -- default theme
-  transparency = false,
-  lsp_semantic_tokens = false, -- needs nvim v0.9, just adds highlight groups for lsp semantic tokens
-
-  -- https://github.com/NvChad/base46/tree/v2.0/lua/base46/extended_integrations
-  extended_integrations = {}, -- these aren't compiled by default, ex: "alpha", "notify"
 
   -- cmp themeing
   cmp = {
-    icons = true,
     lspkind_text = true,
     style = "default", -- default/flat_light/flat_dark/atom/atom_colored
     border_color = "grey_fg", -- only applicable for "default" style, use color names from base30 variables
@@ -35,14 +22,6 @@ M.ui = {
     -- default/round/block/arrow separators work only for default statusline theme
     -- round and block will work for minimal theme only
     separator_style = "default",
-    overriden_modules = nil,
-  },
-
-  -- lazyload it when there are 1+ buffers
-  tabufline = {
-    show_numbers = false,
-    enabled = true,
-    lazyload = true,
     overriden_modules = nil,
   },
 
@@ -71,8 +50,6 @@ M.ui = {
       { "  Mappings", "Spc c h", "NvCheatsheet" },
     },
   },
-
-  cheatsheet = { theme = "grid" }, -- simple/grid
 
   lsp = {
     -- show function signatures i.e args as you type
