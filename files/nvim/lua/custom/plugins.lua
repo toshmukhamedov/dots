@@ -43,6 +43,8 @@ local plugins = {
             ensure_installed = {
                 "lua-language-server",
                 "typescript-language-server",
+                "eslint-lsp",
+                "deno",
                 "rust-analyzer",
             },
         },
@@ -205,12 +207,13 @@ local plugins = {
                 -- Lsp server name .
                 function()
                     local msg = 'No Active Lsp'
-                    local buf_ft = vim.api.nvim_buf_get_option(0, 'filetype')
-                    local clients = vim.lsp.get_active_clients()
+                    local buf_ft = vim.api.nvim_get_option_value('filetype', {})
+                    local clients = vim.lsp.get_clients()
                     if next(clients) == nil then
                         return msg
                     end
                     for _, client in ipairs(clients) do
+                        ---@diagnostic disable-next-line: undefined-field
                         local filetypes = client.config.filetypes
                         if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
                             return client.name
@@ -224,8 +227,10 @@ local plugins = {
 
             -- Add components to right sections
             ins_right {
-                'o:encoding',       -- option component same as &encoding in viml
-                fmt = string.lower, -- I'm not sure why it's upper case either ;)
+                'tabnine',
+                fmt = function(s)
+                    return string.gsub(s, "tabnine ", "")
+                end,
                 cond = conditions.hide_in_width,
                 color = { fg = colors.green, gui = 'bold' },
             }
@@ -285,22 +290,37 @@ local plugins = {
         end
     },
     {
-        'echasnovski/mini.pairs',
-        event = { "VeryLazy" },
-        version = false,
+        'ZhiyuanLck/smart-pairs',
+        event = { "InsertEnter" },
         config = function()
-            require("mini.pairs").setup()
+            require("pairs"):setup()
         end
     },
     {
         "echasnovski/mini.comment",
         version = false,
         keys = {
-            { "gcc", mode = "n",          desc = "Comment toggle current line" },
-            { "gc",  mode = { "n", "o" }, desc = "Comment toggle linewise" },
-            { "gc",  mode = "x",          desc = "Comment toggle linewise (visual)" },
+            { "<leader>/", mode = "n",          desc = "Comment toggle current line" },
+            { "<leader>/", mode = { "n", "o" }, desc = "Comment toggle linewise" },
+            { "<leader>/", mode = "x",          desc = "Comment toggle linewise (visual)" },
         },
-        config = true
+        opts = {
+            mappings = {
+                -- Toggle comment (like `gcip` - comment inner paragraph) for both
+                -- Normal and Visual modes
+                comment = '<leader>/',
+
+                -- Toggle comment on current line
+                comment_line = '<leader>/',
+
+                -- Toggle comment on visual selection
+                comment_visual = '<leader>/',
+
+                -- Define 'comment' textobject (like `dgc` - delete whole comment block)
+                -- Works also in Visual mode if mapping differs from `comment_visual`
+                textobject = '<leader>/',
+            },
+        }
     },
     {
         "echasnovski/mini.indentscope",
@@ -360,7 +380,7 @@ local plugins = {
     },
     {
         "FabijanZulj/blame.nvim",
-        cmd = {"ToggleBlame", "EnableBlame", "DisableBlame"},
+        cmd = { "ToggleBlame", "EnableBlame", "DisableBlame" },
         keys = {
             { "<leader>gb", "<cmd>ToggleBlame<cr>", desc = "Git blame" },
         }
@@ -401,6 +421,40 @@ local plugins = {
         version = false,
         config = true
     },
+    {
+        'alexghergh/nvim-tmux-navigation',
+        event = "VeryLazy",
+        config = function()
+            local nvim_tmux_nav = require('nvim-tmux-navigation')
+
+            nvim_tmux_nav.setup {
+                disable_when_zoomed = true -- defaults to false
+            }
+
+            vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+            vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+            vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+            vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+            vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+            vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
+        end
+    },
+    -- {
+    --     'codota/tabnine-nvim',
+    --     build = "./dl_binaries.sh",
+    --     event = { "InsertEnter" },
+    --     config = function()
+    --         require('tabnine').setup({
+    --             disable_auto_comment = true,
+    --             accept_keymap = "<Tab>",
+    --             dismiss_keymap = "<C-]>",
+    --             debounce_ms = 800,
+    --             -- suggestion_color = { gui = "#ffffff", cterm = 244 },
+    --             exclude_filetypes = { "TelescopePrompt", "NvimTree" },
+    --             log_file_path = nil, -- absolute path to Tabnine log file
+    --         })
+    --     end
+    -- },
 }
 
 return plugins

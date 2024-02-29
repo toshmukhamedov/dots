@@ -10,10 +10,9 @@ M.on_attach = function(client, bufnr)
 
     -- TODO: Need fix
     -- if client.server_capabilities.signatureHelpProvider then
-    --     require("nvchad.signature").setup(client)
+    --     require("signature").setup(client)
     -- end
 
-    require("core.bootstrap").echo(tostring(bufnr))
     if client.server_capabilities.inlayHintProvider then
         vim.lsp.inlay_hint.enable(bufnr, true)
     end

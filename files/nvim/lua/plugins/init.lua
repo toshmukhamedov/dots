@@ -5,10 +5,10 @@ local default_plugins = {
     "nvim-lua/plenary.nvim",
 
     {
-        "NvChad/nvim-colorizer.lua",
+        "norcalli/nvim-colorizer.lua",
         event = "User FilePost",
-        config = function(_, opts)
-            require("colorizer").setup(opts)
+        config = function()
+            require("colorizer").setup()
 
             -- execute colorizer as soon as possible
             vim.defer_fn(function()
@@ -60,7 +60,7 @@ local default_plugins = {
         config = function(_, opts)
             require("mason").setup(opts)
 
-            -- custom nvchad cmd to install all mason binaries listed
+            -- custom cmd to install all mason binaries listed
             vim.api.nvim_create_user_command("MasonInstallAll", function()
                 if opts.ensure_installed and #opts.ensure_installed > 0 then
                     vim.cmd("MasonInstall " .. table.concat(opts.ensure_installed, " "))

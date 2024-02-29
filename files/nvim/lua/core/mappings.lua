@@ -168,6 +168,7 @@ M.lspconfig = {
 
         ["<leader>ra"] = {
             function()
+                -- TODO: Une another plugin
                 require("nvchad.renamer").open()
             end,
             "LSP rename",
