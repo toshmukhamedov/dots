@@ -353,4 +353,17 @@ M.gitsigns = {
     },
 }
 
+-- Neo-tree 
+M.neotree = {
+  plugin = true,
+
+  n = {
+    -- toggle
+    ["<C-n>"] = { "<cmd> Neotree position=current toggle <CR>", "Toggle Neotree" },
+
+    -- focus
+    ["<leader>e"] = { "<cmd> Neotree position=current <CR>", "Focus Neotree" },
+  },
+}
+
 return M

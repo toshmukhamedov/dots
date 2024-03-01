@@ -24,18 +24,18 @@ local options = {
                 results_width = 0.8,
             },
             vertical = {
-                mirror = false,
+                prompt_position = "top",
+                -- preview_width = 0.55,
+                -- results_width = 0.8,
+                mirror = true,
             },
             width = 0.50,
-            height = 0.80,
-            preview_cutoff = 120,
+            -- height = 0.80,
+            -- preview_cutoff = 120,
         },
-        file_sorter = require("telescope.sorters").get_fuzzy_file,
-        file_ignore_patterns = { "node_modules" },
-        generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
+        file_ignore_patterns = { "node_modules", "*-lock.json" },
         path_display = { "truncate" },
         winblend = 0,
-        border = {},
         color_devicons = true,
         set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
@@ -56,7 +56,7 @@ local options = {
             -- the default case_mode is "smart_case"
         }
     },
-    extensions_list = {},
+    extensions_list = {"fzf"},
 }
 
 return options

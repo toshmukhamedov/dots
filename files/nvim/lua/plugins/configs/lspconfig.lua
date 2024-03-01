@@ -17,7 +17,7 @@ M.on_attach = function(client, bufnr)
         vim.lsp.inlay_hint.enable(bufnr, true)
     end
 
-    if not utils.load_config().ui.lsp_semantic_tokens and client.supports_method "textDocument/semanticTokens" then
+    if client.supports_method "textDocument/semanticTokens" then
         client.server_capabilities.semanticTokensProvider = nil
     end
 end
