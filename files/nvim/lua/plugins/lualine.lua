@@ -1,5 +1,4 @@
-return
-{
+return {
     'nvim-lualine/lualine.nvim',
     lazy = false,
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -87,9 +86,8 @@ return
 
         ins_left {
             -- mode component
-            'mode',
-            fmt = function()
-                return ""
+            function()
+                return ""
             end,
             color = function()
                 -- auto change color according to neovims mode
