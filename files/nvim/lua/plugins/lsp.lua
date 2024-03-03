@@ -2,6 +2,10 @@ return {
     {
         "williamboman/mason.nvim",
         cmd = { "Mason", "MasonInstall", "MasonInstallAll", "MasonUpdate" },
+        init = function()
+            -- add binaries installed by mason.nvim to path
+            vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin:" .. vim.env.PATH
+        end,
         opts = {
             PATH = "skip",
             ui = {
@@ -28,7 +32,7 @@ return {
                 "eslint-lsp",
                 "deno",
                 "rust-analyzer",
-            }, -- not an mason option
+            }, -- not a mason option
         },
         config = function(_, opts)
             require("mason").setup(opts)
@@ -45,7 +49,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
-        lazy = false,
+        event = "VeryLazy",
         config = function()
             local M = {}
             local util = require 'vim.lsp.util'

@@ -64,6 +64,7 @@ return {
         init = function ()
             vim.g.codeium_filetypes = {
                 ["TelescopePrompt"] = false,
+                ["OverseerForm"] = false,
             }
         end,
     },

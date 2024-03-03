@@ -4,10 +4,10 @@ return {
     branch = "v3.x",
     keys = {
         -- focus 
-        { "<leader>e", ":NeoTree position=current<CR>", desc = "Focus NeoTree" },
+        { "<leader>e", ":Neotree position=current<CR>", desc = "Focus NeoTree" },
 
         -- toggle 
-        { "<C-n>", ":NeoTree position=current toggle<CR>", desc = "Toggle NeoTree" },
+        { "<C-n>", ":Neotree position=current toggle<CR>", desc = "Toggle NeoTree" },
     },
     dependencies = {
         "nvim-lua/plenary.nvim",

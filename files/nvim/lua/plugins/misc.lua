@@ -1,11 +1,17 @@
 return {
     {
         "norcalli/nvim-colorizer.lua",
-        lazy = false,
+        cmd = {
+            "ColorizerAttachToBuffer",
+            "ColorizerDetachFromBuffer",
+            "ColorizerReloadAllBuffers",
+            "ColorizerToggle",
+        },
     },
     {
         'windwp/nvim-autopairs',
         event = "InsertEnter",
+        config = true
     },
     {
         "folke/trouble.nvim",
