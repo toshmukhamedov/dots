@@ -1,14 +1,17 @@
-return
-{
+return {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = { "Neotree" },
     branch = "v3.x",
-    init = function()
-        require("core.utils").load_mappings "neotree"
-    end,
+    keys = {
+        -- focus 
+        { "<leader>e", ":NeoTree position=current<CR>", desc = "Focus NeoTree" },
+
+        -- toggle 
+        { "<C-n>", ":NeoTree position=current toggle<CR>", desc = "Toggle NeoTree" },
+    },
     dependencies = {
         "nvim-lua/plenary.nvim",
-        "nvim-tree/nvim-web-devicons",     -- not strictly required, but recommended
+        "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
         "MunifTanjim/nui.nvim",
         -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
     },
@@ -37,8 +40,8 @@ return
                 git_status = {
                     symbols = {
                         -- Change type
-                        added     = "",     -- or "✚", but this is redundant info if you use git_status_colors on the name
-                        modified  = "",     -- or "", but this is redundant info if you use git_status_colors on the name
+                        added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+                        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
                         deleted   = "",
                         renamed   = "➜",
                         -- Status type

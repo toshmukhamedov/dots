@@ -2,7 +2,6 @@ return {
     install = {
         colorscheme = { "onedark" },
     },
-
     ui = {
         icons = {
             ft = "",

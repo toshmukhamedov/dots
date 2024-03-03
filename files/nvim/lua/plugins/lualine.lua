@@ -81,13 +81,16 @@ return
             function()
                 return '▊'
             end,
-            color = { fg = colors.blue },          -- Sets highlighting of component
-            padding = { left = 0, right = 1 },     -- We don't need space before this
+            color = { fg = colors.blue },      -- Sets highlighting of component
+            padding = { left = 0, right = 1 }, -- We don't need space before this
         }
 
         ins_left {
             -- mode component
             'mode',
+            fmt = function()
+                return ""
+            end,
             color = function()
                 -- auto change color according to neovims mode
                 local mode_color = {
@@ -162,7 +165,7 @@ return
                     return msg
                 end
                 for _, client in ipairs(clients) do
-                    ---@diagnostic disable-next-line: undefined-field
+                    ---@diagnostic disable-next-line
                     local filetypes = client.config.filetypes
                     if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
                         return client.name
