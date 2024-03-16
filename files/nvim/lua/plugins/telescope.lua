@@ -3,34 +3,32 @@ return {
         "nvim-telescope/telescope.nvim",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make'
-            },
+            "nvim-tree/nvim-web-devicons",
         },
+        -- event = "VeryLazy",
         cmd = "Telescope",
         keys = {
             -- find
-            { "<leader>ff", ":Telescope find_files<cr>",                                        desc = "Find files" },
-            { "<leader>fa", ":Telescope find_files follow=true no_ignore=true hidden=true<cr>", desc = "Find all" },
-            { "<leader>fw", ":Telescope live_grep<cr>",                                         desc = "Live grep" },
-            { "<leader>fb", ":Telescope buffers<cr>",                                           desc = "Buffers" },
-            { "<leader>fh", ":Telescope help_tags<cr>",                                         desc = "Help tags" },
-            { "<leader>fo", ":Telescope oldfiles<cr>",                                          desc = "Find oldfiles" },
-            { "<leader>fz", ":Telescope current_buffer_fuzzy_find<cr>",                         desc = "Find in current buffer" },
-
-            -- git
-            { "<leader>cm", ":Telescope git_commits<cr>",                                       desc = "Git commits" },
-            { "<leader>gt", ":Telescope git_status<cr>",                                        desc = "Git status" },
-
-            -- bookmarks
-            { "<leader>ma", ":Telescope marks<cr>",                                             desc = "Telescope bookmarks" },
+            { "<leader>ff", require("telescope.builtin").find_files,                desc = "Find files" },
+            { "<leader>fw", require("telescope.builtin").live_grep,                 desc = "Live grep" },
+            { "<leader>fb", require("telescope.builtin").buffers,                   desc = "Buffers" },
+            { "<leader>fh", require("telescope.builtin").help_tags,                 desc = "Help tags" },
+            { "<leader>fo", require("telescope.builtin").oldfiles,                  desc = "Find oldfiles" },
+            { "<leader>fz", require("telescope.builtin").current_buffer_fuzzy_find, desc = "Find in current buffer" },
+            --
+            -- -- git
+            { "<leader>cm", require("telescope.builtin").git_commits,               desc = "Git commits" },
+            { "<leader>cm", require("telescope.builtin").git_status,                desc = "Git status" },
+            { "<leader>gt", require("telescope.builtin").git_branches,              desc = "Git branches" },
+            --
+            -- -- bookmarks
+            { "<leader>ma", require("telescope.builtin").marks,                     desc = "Telescope bookmarks" },
         },
         opts = {
             defaults = {
                 vimgrep_arguments = {
                     "rg",
-                    "-L",
+                    "--fixed-strings",
                     "--color=never",
                     "--no-heading",
                     "--with-filename",
@@ -46,22 +44,14 @@ return {
                 sorting_strategy = "ascending",
                 layout_strategy = "vertical",
                 layout_config = {
-                    horizontal = {
-                        prompt_position = "top",
-                        preview_width = 0.55,
-                        results_width = 0.8,
-                    },
                     vertical = {
                         prompt_position = "top",
-                        -- preview_width = 0.55,
-                        -- results_width = 0.8,
                         mirror = true,
                     },
-                    width = 0.50,
+                    width = 0.60,
                     -- height = 0.80,
                     -- preview_cutoff = 120,
                 },
-                file_ignore_patterns = { "node_modules", "*-lock.json" },
                 path_display = { "truncate" },
                 winblend = 0,
                 color_devicons = true,
@@ -81,10 +71,11 @@ return {
                     override_generic_sorter = true, -- override the generic sorter
                     override_file_sorter = true,    -- override the file sorter
                     case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
-                    -- the default case_mode is "smart_case"
-                }
+                },
             },
-            extensions_list = { "fzf" },
+            extensions_list = {
+                "fzf",
+            },
         },
         config = function(_, opts)
             ---@diagnostic disable-next-line
@@ -96,6 +87,10 @@ return {
                 telescope.load_extension(ext)
             end
         end,
+    },
+    {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        build = 'make'
     },
 
 }

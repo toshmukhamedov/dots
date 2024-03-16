@@ -1,0 +1,33 @@
+import = [
+  "~/.config/alacritty/themes/one_dark.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+decorations = "None"
+opacity = 0.87
+blur = true
+startup_mode = "Maximized"
+dynamic_padding = true
+padding = { x = 2  }
+option_as_alt = "Both"
+
+[scrolling]
+multiplier = 1
+
+[font]
+normal = { family = "CaskaydiaCove Nerd Font", style = "Regular" }
+offset = { y = 8 }
+glyph_offset = { y = 4 }
+size = 13.3
+
+[cursor]
+style = { shape = "Beam" }
+
+[keyboard]
+bindings = [
+    {key = "T", mods = "Command", action = "None"},
+    {key = "F", mods = "Command", action = "None"},
+]

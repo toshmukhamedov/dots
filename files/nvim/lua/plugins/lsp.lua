@@ -51,12 +51,11 @@ return {
         "neovim/nvim-lspconfig",
         event = "VeryLazy",
         config = function()
-            local M = {}
             local util = require 'vim.lsp.util'
             local lspconfig = require "lspconfig"
 
             -- export on_attach & capabilities for custom lspconfigs
-            M.on_attach = function(client, bufnr)
+            local function on_attach(client, bufnr)
                 -- lsp decorations
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr })
 
@@ -76,14 +75,10 @@ return {
                 vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = bufnr })
 
                 -- lsp rename
-                vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { buffer = bufnr })
-
-                -- lsp code actions
-                vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
-                vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
+                vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = bufnr })
 
                 -- lsp references
-                vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr })
+                vim.keymap.set("n", "gr", require("telescope.builtin").lsp_references, { buffer = bufnr })
 
                 -- floating diagnostics
                 vim.keymap.set("n", "<leader>lf", function()
@@ -94,6 +89,7 @@ return {
                 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
 
+                print(client.offset_encoding)
                 -- diagnostic setloclist
                 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { buffer = bufnr })
 
@@ -113,27 +109,16 @@ return {
                     vim.lsp.inlay_hint.enable(bufnr, true)
                 end
 
-                if client.server_capabilities.documentHighlightProvider then
-                    vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-                    vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
-                    vim.api.nvim_create_autocmd("CursorHold", {
-                        callback = vim.lsp.buf.document_highlight,
-                        buffer = bufnr,
-                        group = "lsp_document_highlight",
-                        desc = "Document Highlight",
-                    })
-                    vim.api.nvim_create_autocmd("CursorMoved", {
-                        callback = vim.lsp.buf.clear_references,
-                        buffer = bufnr,
-                        group = "lsp_document_highlight",
-                        desc = "Clear All the References",
-                    })
+                -- lsp code actions
+                if client.supports_method "textDocument/codeAction" then
+                    vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
+                    vim.keymap.set("v", "<leader>ca", vim.lsp.buf.code_action, { buffer = bufnr })
                 end
             end
 
-            M.capabilities = vim.lsp.protocol.make_client_capabilities()
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-            M.capabilities.textDocument.completion.completionItem = {
+            capabilities.textDocument.completion.completionItem = {
                 documentationFormat = { "markdown", "plaintext" },
                 snippetSupport = true,
                 preselectSupport = true,
@@ -151,9 +136,18 @@ return {
                 },
             }
 
+            -- LSP Diagnostics
+            vim.diagnostic.config({
+                virtual_text = true,
+                signs = false,
+                underline = true,
+                update_in_insert = false,
+                severity_sort = false,
+            })
+
             require("lspconfig").lua_ls.setup {
-                on_attach = M.on_attach,
-                capabilities = M.capabilities,
+                on_attach = on_attach,
+                capabilities = capabilities,
                 settings = {
                     Lua = {
                         diagnostics = {
@@ -201,8 +195,8 @@ return {
             end
             lspconfig.tsserver.setup {
                 root_dir = require("lspconfig/util").root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
-                on_attach = M.on_attach,
-                capabilities = M.capabilities,
+                on_attach = on_attach,
+                capabilities = capabilities,
                 single_file_support = true,
                 commands = {
                     TSOrganizeImports = {
@@ -244,20 +238,72 @@ return {
                 },
             }
 
+            -- kind icons
+            local icons = {
+                Class = " ",
+                Color = " ",
+                Constant = " ",
+                Constructor = " ",
+                Enum = " ",
+                EnumMember = " ",
+                Field = "󰄶 ",
+                File = " ",
+                Folder = " ",
+                Function = " ",
+                Interface = "󰜰",
+                Keyword = "󰌆 ",
+                Method = "ƒ ",
+                Module = "󰏗 ",
+                Property = " ",
+                Snippet = "󰘍 ",
+                Struct = " ",
+                Text = " ",
+                Unit = " ",
+                Value = "󰎠 ",
+                Variable = " ",
+            }
+            local kinds = vim.lsp.protocol.CompletionItemKind
+            for i, kind in ipairs(kinds) do
+                kinds[i] = icons[kind] or kind
+            end
+
             -- Eslint
             lspconfig.eslint.setup {
                 on_attach = function(client, bufnr)
+                    -- TODO: Fix
                     vim.api.nvim_create_autocmd("BufWritePre", {
                         buffer = bufnr,
                         command = "EslintFixAll",
                     })
                     formatting_callback(client, bufnr)
-                    M.on_attach(client, bufnr)
+                    on_attach(client, bufnr)
                 end,
-                capabilities = M.capabilities,
+                capabilities = capabilities,
                 settings = {
                     autoFixOnSave = true
                 }
+            }
+
+            -- json lint
+            lspconfig.jsonls.setup {
+                capabilities = capabilities,
+            }
+
+            lspconfig.rust_analyzer.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    ["rust-analyzer"] = {
+                        check = {
+                            command = "clippy",
+                        },
+                    },
+                },
+            }
+
+            lspconfig.bufls.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
             }
         end,
     },

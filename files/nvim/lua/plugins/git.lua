@@ -14,14 +14,6 @@ return {
         "lewis6991/gitsigns.nvim",
         event = "BufReadPost",
         opts = {
-            signs = {
-                add = { text = "│" },
-                change = { text = "│" },
-                delete = { text = "󰍵" },
-                topdelete = { text = "‾" },
-                changedelete = { text = "~" },
-                untracked = { text = "│" },
-            },
             on_attach = function(bufnr)
                 -- navigation through next/prev hunks
                 vim.keymap.set("n", "]c", function()
@@ -60,7 +52,7 @@ return {
         "FabijanZulj/blame.nvim",
         cmd = { "ToggleBlame", "EnableBlame", "DisableBlame" },
         keys = {
-            { "<leader>gb", "<cmd>ToggleBlame<cr>", desc = "Git blame" },
+            { "<leader>tb", "<cmd>ToggleBlame<cr>", desc = "Git blame" },
         }
     },
 

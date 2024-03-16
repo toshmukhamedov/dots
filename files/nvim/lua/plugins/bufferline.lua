@@ -1,8 +1,8 @@
 return {
     'akinsho/bufferline.nvim',
+    enabled = false,
     event = "VeryLazy",
     version = "*",
-    dependencies = 'nvim-tree/nvim-web-devicons',
     init = function()
         -- go to next buffer
         vim.keymap.set('n', '<Tab>', ':BufferLineCycleNext<CR>', {})

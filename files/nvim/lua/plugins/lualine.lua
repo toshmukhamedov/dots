@@ -1,7 +1,6 @@
 return {
     'nvim-lualine/lualine.nvim',
     lazy = false,
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
         local lualine = require('lualine')
 
@@ -137,7 +136,7 @@ return {
         ins_left {
             'diagnostics',
             sources = { 'nvim_diagnostic' },
-            symbols = { error = ' ', warn = ' ', info = ' ' },
+            symbols = { error = ' ', warn = ' ', info = ' ' },
             diagnostics_color = {
                 color_error = { fg = colors.red },
                 color_warn = { fg = colors.yellow },
@@ -145,22 +144,25 @@ return {
             },
         }
 
-        -- Insert mid section. You can make any number of sections in neovim :)
-        -- for lualine it's any number greater then 2
-        ins_left {
-            function()
-                return '%='
-            end,
+        ins_right {
+            'diff',
+            -- Is it me or the symbol for modified us really weird
+            symbols = { added = '󰐖 ', modified = '󰦓 ', removed = '󰍵 ' },
+            diff_color = {
+                added = { fg = colors.green },
+                modified = { fg = colors.orange },
+                removed = { fg = colors.red },
+            },
+            cond = conditions.hide_in_width,
         }
 
-        ins_left {
-            -- Lsp server name .
+        -- Lsp server name .
+        ins_right {
             function()
-                local msg = 'No Active Lsp'
                 local buf_ft = vim.api.nvim_get_option_value('filetype', {})
                 local clients = vim.lsp.get_clients()
                 if next(clients) == nil then
-                    return msg
+                    return ""
                 end
                 for _, client in ipairs(clients) do
                     ---@diagnostic disable-next-line
@@ -169,10 +171,10 @@ return {
                         return client.name
                     end
                 end
-                return msg
+                return ""
             end,
-            icon = ' LSP:',
-            color = { fg = colors.fg, gui = 'bold' },
+            icon = '󱐋',
+            color = { fg = colors.yellow, gui = 'bold' },
         }
 
         -- Add components to right sections
@@ -196,18 +198,6 @@ return {
             'branch',
             icon = '',
             color = { fg = colors.violet, gui = 'bold' },
-        }
-
-        ins_right {
-            'diff',
-            -- Is it me or the symbol for modified us really weird
-            symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
-            diff_color = {
-                added = { fg = colors.green },
-                modified = { fg = colors.orange },
-                removed = { fg = colors.red },
-            },
-            cond = conditions.hide_in_width,
         }
 
         ins_right {

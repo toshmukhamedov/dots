@@ -42,11 +42,38 @@ return {
                 "hrsh7th/cmp-nvim-lua",
                 "hrsh7th/cmp-nvim-lsp",
                 "hrsh7th/cmp-buffer",
-                "hrsh7th/cmp-path",
+                "FelipeLema/cmp-async-path",
             },
         },
         config = function()
             local cmp = require("cmp")
+            local cmp_kinds = {
+                Text = '  ',
+                Method = '  ',
+                Function = '  ',
+                Constructor = '  ',
+                Field = '  ',
+                Variable = '  ',
+                Class = '  ',
+                Interface = '  ',
+                Module = '  ',
+                Property = '  ',
+                Unit = '  ',
+                Value = '  ',
+                Enum = '  ',
+                Keyword = ' ',
+                Snippet = '  ',
+                Color = '  ',
+                File = '  ',
+                Reference = '  ',
+                Folder = '  ',
+                EnumMember = '  ',
+                Constant = '  ',
+                Struct = '  ',
+                Event = '  ',
+                Operator = '  ',
+                TypeParameter = '  ',
+            }
 
             cmp.setup({
                 snippet = {
@@ -68,11 +95,17 @@ return {
                 },
                 sources = {
                     { name = "nvim_lsp" },
-                    { name = "luasnip", option = { use_show_condition = true } },
+                    { name = "luasnip",   option = { use_show_condition = true } },
                     { name = "buffer" },
                     { name = "nvim_lua" },
-                    { name = "path" },
-                }
+                    { name = "async_path" },
+                },
+                formatting = {
+                    format = function(_, vim_item)
+                        vim_item.kind = cmp_kinds[vim_item.kind] or ''
+                        return vim_item
+                    end,
+                },
             })
             local cmp_autopairs = require('nvim-autopairs.completion.cmp')
             cmp.event:on(

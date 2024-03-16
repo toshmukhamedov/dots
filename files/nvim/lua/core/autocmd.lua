@@ -14,3 +14,5 @@ autocmd(
     { pattern = "*", command = "set guicursor=a:ver20" }
 )
 
+-- Command
+vim.api.nvim_create_user_command("W", "w", {})

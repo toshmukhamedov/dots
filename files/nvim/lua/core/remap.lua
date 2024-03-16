@@ -13,7 +13,7 @@ vim.keymap.set("i", "<C-j>", "<Down>")
 vim.keymap.set("i", "<C-k>", "<Up>")
 
 -- clear highlights
-vim.keymap.set("n", "<Esc>", ":noh<CR>")
+vim.keymap.set("n", "<Esc>", ":noh<CR>", {silent = true})
 
 -- switch between windows
 vim.keymap.set("n", "<C-h>", "<C-w>h")
@@ -29,6 +29,9 @@ vim.keymap.set("n", "<C-c>", ":%y+<CR>")
 
 -- new buffer 
 vim.keymap.set("n", "<leader>b", ":enew<CR>")
+
+-- close buffer
+vim.keymap.set("n", "<leader>x", ":bd<CR>")
 
 -- lsp formatting
 vim.keymap.set("n", "<leader>fm", ":lua vim.lsp.buf.format { async = true }<CR>")

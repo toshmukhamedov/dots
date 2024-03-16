@@ -6,11 +6,6 @@ return {
         config = true
     },
     {
-        'echasnovski/mini.ai',
-        disabled = true,
-        version = false,
-    },
-    {
         'echasnovski/mini.starter',
         event = "VimEnter",
         version = false,

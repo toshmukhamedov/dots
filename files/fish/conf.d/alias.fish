@@ -29,3 +29,6 @@ alias clean_nvim='rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim 
 
 # Matrix
 alias matrix='neo --chars 3040,309F --fullwidth --defaultbg --density 0.4 --rippct 50 --shortpct 80 --speed 2 --bold 2'
+
+# Gita
+alias gita="python3 -m gita"

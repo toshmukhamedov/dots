@@ -1,5 +1,6 @@
 return {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
     event = "BufReadPost",
     main = "ibl",
     init = function()
@@ -17,5 +18,9 @@ return {
         }
         vim.g.indent_blankline_buftype_exclude = { "terminal" }
     end,
-    config = true
+    opts = {
+        scope = {
+            enabled = false,
+        },
+    },
 }
