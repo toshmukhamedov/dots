@@ -54,6 +54,14 @@ return {
             local util = require 'vim.lsp.util'
             local lspconfig = require "lspconfig"
 
+            -- aucmds
+            vim.api.nvim_create_autocmd({ "CursorHold" }, {
+                group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
+                callback = function()
+                    vim.diagnostic.open_float(nil, { focus = false })
+                end
+            })
+
             -- export on_attach & capabilities for custom lspconfigs
             local function on_attach(client, bufnr)
                 -- lsp decorations
@@ -89,7 +97,6 @@ return {
                 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
 
-                print(client.offset_encoding)
                 -- diagnostic setloclist
                 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { buffer = bufnr })
 
@@ -138,7 +145,7 @@ return {
 
             -- LSP Diagnostics
             vim.diagnostic.config({
-                virtual_text = true,
+                virtual_text = false,
                 signs = false,
                 underline = true,
                 update_in_insert = false,

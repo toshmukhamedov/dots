@@ -15,6 +15,7 @@ return {
             { "<leader>fh", require("telescope.builtin").help_tags,                 desc = "Help tags" },
             { "<leader>fo", require("telescope.builtin").oldfiles,                  desc = "Find oldfiles" },
             { "<leader>fz", require("telescope.builtin").current_buffer_fuzzy_find, desc = "Find in current buffer" },
+            { "<leader>fs", require("telescope.builtin").lsp_document_symbols,      desc = "Find symbols" },
             --
             -- -- git
             { "<leader>cm", require("telescope.builtin").git_commits,               desc = "Git commits" },
@@ -38,9 +39,6 @@ return {
                 },
                 prompt_prefix = "   ",
                 selection_caret = "  ",
-                entry_prefix = "  ",
-                initial_mode = "insert",
-                selection_strategy = "reset",
                 sorting_strategy = "ascending",
                 layout_strategy = "vertical",
                 layout_config = {
@@ -56,11 +54,6 @@ return {
                 winblend = 0,
                 color_devicons = true,
                 set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-                file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-                grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-                qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-                -- Developer configurations: Not meant for general override
-                buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
                 mappings = {
                     n = { ["q"] = require("telescope.actions").close },
                 },

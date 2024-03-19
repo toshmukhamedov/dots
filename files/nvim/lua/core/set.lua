@@ -21,6 +21,8 @@ opt.smartcase = true
 opt.mouse = "a"
 opt.scrolloff = 10
 opt.wrap = false
+opt.eol = false
+opt.fixeol = false
 
 -- Numbers
 opt.number = true
