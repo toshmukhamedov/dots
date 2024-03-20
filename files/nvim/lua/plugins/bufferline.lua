@@ -11,7 +11,7 @@ return {
         vim.keymap.set('n', '<S-Tab>', ':BufferLineCyclePrev<CR>', {})
 
         -- close buffer 
-        vim.keymap.set('n', '<leader>x', ':bd<CR>', {})
+        vim.keymap.set('n', '<leader>x', ':exit<CR>', {})
     end,
     config = function()
         require("bufferline").setup()

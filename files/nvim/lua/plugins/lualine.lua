@@ -178,21 +178,21 @@ return {
         }
 
         -- Add components to right sections
-        ins_right {
-            function()
-                local status_string = vim.api.nvim_call_function("codeium#GetStatusString", {}):gsub("%s+", "")
-
-                if status_string == "" then
-                    return "*"
-                end
-
-                return status_string
-            end,
-            fmt = string.lower,
-            type = "vim_fun",
-            icon = "{…}",
-            color = { fg = colors.green, gui = 'bold' },
-        }
+        -- ins_right {
+        --     function()
+        --         local status_string = vim.api.nvim_call_function("codeium#GetStatusString", {}):gsub("%s+", "")
+        --
+        --         if status_string == "" then
+        --             return "*"
+        --         end
+        --
+        --         return status_string
+        --     end,
+        --     fmt = string.lower,
+        --     type = "vim_fun",
+        --     icon = "{…}",
+        --     color = { fg = colors.green, gui = 'bold' },
+        -- }
 
         ins_right {
             'branch',

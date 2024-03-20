@@ -47,8 +47,6 @@ return {
                         mirror = true,
                     },
                     width = 0.60,
-                    -- height = 0.80,
-                    -- preview_cutoff = 120,
                 },
                 path_display = { "truncate" },
                 winblend = 0,

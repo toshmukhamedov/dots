@@ -57,3 +57,6 @@ opt.updatetime = 250
 opt.whichwrap:append "<>[]hl"
 
 g.mapleader = " "
+g.markdown_fenced_languages = {
+  "ts=typescript"
+}

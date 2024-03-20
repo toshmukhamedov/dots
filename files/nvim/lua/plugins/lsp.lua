@@ -54,14 +54,6 @@ return {
             local util = require 'vim.lsp.util'
             local lspconfig = require "lspconfig"
 
-            -- aucmds
-            vim.api.nvim_create_autocmd({ "CursorHold" }, {
-                group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-                callback = function()
-                    vim.diagnostic.open_float(nil, { focus = false })
-                end
-            })
-
             -- export on_attach & capabilities for custom lspconfigs
             local function on_attach(client, bufnr)
                 -- lsp decorations
@@ -96,6 +88,11 @@ return {
                 -- goto previous/next diagnostic
                 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { buffer = bufnr })
                 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { buffer = bufnr })
+
+                -- show diagnostic
+                vim.keymap.set("n", "<leader>d", function()
+                    vim.diagnostic.open_float(nil, { focus = false })
+                end, { buffer = bufnr })
 
                 -- diagnostic setloclist
                 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { buffer = bufnr })
@@ -152,6 +149,36 @@ return {
                 severity_sort = false,
             })
 
+
+            -- kind icons
+            local icons = {
+                Class = " ",
+                Color = " ",
+                Constant = " ",
+                Constructor = " ",
+                Enum = " ",
+                EnumMember = " ",
+                Field = "󰄶 ",
+                File = " ",
+                Folder = " ",
+                Function = " ",
+                Interface = "󰜰",
+                Keyword = "󰌆 ",
+                Method = "ƒ ",
+                Module = "󰏗 ",
+                Property = " ",
+                Snippet = "󰘍 ",
+                Struct = " ",
+                Text = " ",
+                Unit = " ",
+                Value = "󰎠 ",
+                Variable = " ",
+            }
+            local kinds = vim.lsp.protocol.CompletionItemKind
+            for i, kind in ipairs(kinds) do
+                kinds[i] = icons[kind] or kind
+            end
+
             require("lspconfig").lua_ls.setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
@@ -182,39 +209,11 @@ return {
             end
 
             -- Typescript/Javascript
-            local TSOrganizeImports = function()
-                vim.lsp.buf.code_action({
-                    apply = true,
-                    context = {
-                        only = { "source.organizeImports.ts" },
-                        diagnostics = {},
-                    },
-                })
-            end
-            local TSRemoveUnused = function()
-                vim.lsp.buf.code_action({
-                    apply = true,
-                    context = {
-                        only = { "source.removeUnused.ts" },
-                        diagnostics = {},
-                    },
-                })
-            end
             lspconfig.tsserver.setup {
-                root_dir = require("lspconfig/util").root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+                root_dir = require("lspconfig/util").root_pattern("package.json", "tsconfig.json"),
                 on_attach = on_attach,
                 capabilities = capabilities,
-                single_file_support = true,
-                commands = {
-                    TSOrganizeImports = {
-                        TSOrganizeImports,
-                        description = "Organize Imports",
-                    },
-                    TSRemoveUnused = {
-                        TSRemoveUnused,
-                        description = "Remove unused",
-                    },
-                },
+                single_file_support = false,
                 completions = {
                     completeFunctionCalls = true,
                 },
@@ -244,35 +243,6 @@ return {
                     },
                 },
             }
-
-            -- kind icons
-            local icons = {
-                Class = " ",
-                Color = " ",
-                Constant = " ",
-                Constructor = " ",
-                Enum = " ",
-                EnumMember = " ",
-                Field = "󰄶 ",
-                File = " ",
-                Folder = " ",
-                Function = " ",
-                Interface = "󰜰",
-                Keyword = "󰌆 ",
-                Method = "ƒ ",
-                Module = "󰏗 ",
-                Property = " ",
-                Snippet = "󰘍 ",
-                Struct = " ",
-                Text = " ",
-                Unit = " ",
-                Value = "󰎠 ",
-                Variable = " ",
-            }
-            local kinds = vim.lsp.protocol.CompletionItemKind
-            for i, kind in ipairs(kinds) do
-                kinds[i] = icons[kind] or kind
-            end
 
             -- Eslint
             lspconfig.eslint.setup {
@@ -311,6 +281,13 @@ return {
             lspconfig.bufls.setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
+            }
+
+            -- deno
+            lspconfig.denols.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                single_file_support = false
             }
         end,
     },
