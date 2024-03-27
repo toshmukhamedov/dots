@@ -4,10 +4,10 @@ return {
     branch = "v3.x",
     keys = {
         -- focus
-        { "<leader>e", ":Neotree position=current<CR>",        desc = "Focus NeoTree" },
+        { "<leader>e", ":Neotree<CR>",        desc = "Focus NeoTree" },
 
         -- toggle
-        { "<C-n>",     ":Neotree position=current toggle<CR>", desc = "Toggle NeoTree" },
+        { "<C-n>",     ":Neotree toggle<CR>", desc = "Toggle NeoTree" },
     },
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -81,17 +81,16 @@ return {
                 },
                 git_status = {
                     symbols = {
-                        -- Change type
-                        added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
-                        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
                         deleted   = "",
                         renamed   = "➜",
-                        -- Status type
-                        untracked = "★",
                         ignored   = "◌",
                         unstaged  = "✗",
                         staged    = "✓",
                         conflict  = "",
+                        -- disabled
+                        added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
+                        modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
+                        untracked = "",
                     }
                 },
                 symlink_target = {

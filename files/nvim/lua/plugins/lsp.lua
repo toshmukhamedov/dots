@@ -149,36 +149,6 @@ return {
                 severity_sort = false,
             })
 
-
-            -- kind icons
-            local icons = {
-                Class = " ",
-                Color = " ",
-                Constant = " ",
-                Constructor = " ",
-                Enum = " ",
-                EnumMember = " ",
-                Field = "󰄶 ",
-                File = " ",
-                Folder = " ",
-                Function = " ",
-                Interface = "󰜰",
-                Keyword = "󰌆 ",
-                Method = "ƒ ",
-                Module = "󰏗 ",
-                Property = " ",
-                Snippet = "󰘍 ",
-                Struct = " ",
-                Text = " ",
-                Unit = " ",
-                Value = "󰎠 ",
-                Variable = " ",
-            }
-            local kinds = vim.lsp.protocol.CompletionItemKind
-            for i, kind in ipairs(kinds) do
-                kinds[i] = icons[kind] or kind
-            end
-
             require("lspconfig").lua_ls.setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
@@ -210,7 +180,7 @@ return {
 
             -- Typescript/Javascript
             lspconfig.tsserver.setup {
-                root_dir = require("lspconfig/util").root_pattern("package.json", "tsconfig.json"),
+                root_dir = require("lspconfig/util").root_pattern("package.json"),
                 on_attach = on_attach,
                 capabilities = capabilities,
                 single_file_support = false,
@@ -244,7 +214,7 @@ return {
                 },
             }
 
-            -- Eslint
+            -- linters
             lspconfig.eslint.setup {
                 on_attach = function(client, bufnr)
                     -- TODO: Fix
@@ -259,6 +229,10 @@ return {
                 settings = {
                     autoFixOnSave = true
                 }
+            }
+            lspconfig.biome.setup{
+                capabilities = capabilities,
+                on_attach = on_attach,
             }
 
             -- json lint
@@ -287,6 +261,7 @@ return {
             lspconfig.denols.setup {
                 on_attach = on_attach,
                 capabilities = capabilities,
+                root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
                 single_file_support = false
             }
         end,

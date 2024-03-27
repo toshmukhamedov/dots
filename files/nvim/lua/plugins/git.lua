@@ -55,5 +55,16 @@ return {
             { "<leader>tb", "<cmd>ToggleBlame<cr>", desc = "Git blame" },
         }
     },
-
+    {
+        "sindrets/diffview.nvim",
+        cmd = {
+            "DiffviewOpen",
+            "DiffviewClose",
+            "DiffviewToggleFiles",
+            "DiffviewFocusFiles",
+            "DiffviewFileHistory",
+            "DiffviewRefresh",
+            "DiffviewLog",
+        },
+    }
 }

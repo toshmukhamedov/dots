@@ -35,8 +35,8 @@ vim.keymap.set("n", "<leader>fm", function()
     vim.lsp.buf.format { async = true }
 end)
 
--- close buffer
-vim.keymap.set("n", "<leader>x", ":exit<CR>")
+-- delete buffer
+vim.keymap.set("n", "<leader>x", ":bdelete<CR>", { silent = true })
 
 -- escape terminal mode
 vim.keymap.set("t", "<C-x>", "<C-\\><C-N>")
