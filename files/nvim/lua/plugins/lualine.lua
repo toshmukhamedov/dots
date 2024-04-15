@@ -63,6 +63,7 @@ return {
                 lualine_c = {},
                 lualine_x = {},
             },
+            globalstatus = true,
         }
 
         -- Inserts a component in lualine_c at left section

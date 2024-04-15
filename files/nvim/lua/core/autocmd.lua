@@ -9,10 +9,10 @@ autocmd("FileType", {
 })
 
 -- Fix cursor shape
-autocmd(
-    { "VimLeave" },
-    { pattern = "*", command = "set guicursor=a:ver20" }
-)
+-- autocmd(
+--     { "VimLeave" },
+--     { pattern = "*", command = "set guicursor=a:ver20" }
+-- )
 
 -- Command
 vim.api.nvim_create_user_command("W", "w", {})

@@ -32,3 +32,6 @@ alias matrix='neo --chars 3040,309F --fullwidth --defaultbg --density 0.4 --ripp
 
 # Gita
 alias gita="python3 -m gita"
+
+# Sessionizer
+alias sessionizer='cd (fd . ~/Developer --min-depth 1 --max-depth 2 --type directory | fzf --exact)'

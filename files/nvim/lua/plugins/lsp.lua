@@ -68,9 +68,6 @@ return {
                 -- lsp implementation
                 vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr })
 
-                -- lsp signature help
-                vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { buffer = bufnr })
-
                 -- lsp definition type
                 vim.keymap.set("n", "<leader>D", vim.lsp.buf.type_definition, { buffer = bufnr })
 
@@ -104,13 +101,13 @@ return {
                     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
                 end, { buffer = bufnr })
 
-                -- TODO: Implement signature
-                -- if client.server_capabilities.signatureHelpProvider then
-                --     require("signature").setup(client)
-                -- end
+                -- lsp signature help
+                if client.server_capabilities.signatureHelpProvider then
+                    vim.keymap.set("n", "<leader>ls", vim.lsp.buf.signature_help, { buffer = bufnr })
+                end
 
                 if client.server_capabilities.inlayHintProvider then
-                    vim.lsp.inlay_hint.enable(bufnr, true)
+                    -- vim.lsp.inlay_hint.enable(bufnr, true)
                 end
 
                 -- lsp code actions
@@ -122,31 +119,13 @@ return {
 
             local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-            capabilities.textDocument.completion.completionItem = {
-                documentationFormat = { "markdown", "plaintext" },
-                snippetSupport = true,
-                preselectSupport = true,
-                insertReplaceSupport = true,
-                labelDetailsSupport = true,
-                deprecatedSupport = true,
-                commitCharactersSupport = true,
-                tagSupport = { valueSet = { 1 } },
-                resolveSupport = {
-                    properties = {
-                        "documentation",
-                        "detail",
-                        "additionalTextEdits",
-                    },
-                },
-            }
-
             -- LSP Diagnostics
             vim.diagnostic.config({
                 virtual_text = false,
                 signs = false,
                 underline = true,
                 update_in_insert = false,
-                severity_sort = false,
+                severity_sort = true,
             })
 
             require("lspconfig").lua_ls.setup {
@@ -188,24 +167,12 @@ return {
                     completeFunctionCalls = true,
                 },
                 settings = {
-                    javascript = {
-                        inlayHints = {
-                            includeInlayEnumMemberValueHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayVariableTypeHints = true,
-                        },
-                    },
-
                     typescript = {
                         inlayHints = {
                             includeInlayEnumMemberValueHints = true,
                             includeInlayFunctionLikeReturnTypeHints = true,
                             includeInlayFunctionParameterTypeHints = true,
-                            includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all';
+                            includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
                             includeInlayParameterNameHintsWhenArgumentMatchesName = true,
                             includeInlayPropertyDeclarationTypeHints = true,
                             includeInlayVariableTypeHints = true,
@@ -230,7 +197,7 @@ return {
                     autoFixOnSave = true
                 }
             }
-            lspconfig.biome.setup{
+            lspconfig.biome.setup {
                 capabilities = capabilities,
                 on_attach = on_attach,
             }
@@ -252,11 +219,6 @@ return {
                 },
             }
 
-            lspconfig.bufls.setup {
-                on_attach = on_attach,
-                capabilities = capabilities,
-            }
-
             -- deno
             lspconfig.denols.setup {
                 on_attach = on_attach,
@@ -266,4 +228,13 @@ return {
             }
         end,
     },
+    {
+        "nvimdev/lspsaga.nvim",
+        event = "LspAttach",
+        opts = {
+            lightbulb = {
+                enable = false
+            }
+        }
+    }
 }

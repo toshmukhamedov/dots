@@ -16,6 +16,7 @@ return {
             { "<leader>fo", require("telescope.builtin").oldfiles,                  desc = "Find oldfiles" },
             { "<leader>fz", require("telescope.builtin").current_buffer_fuzzy_find, desc = "Find in current buffer" },
             { "<leader>fs", require("telescope.builtin").lsp_document_symbols,      desc = "Find symbols" },
+            { "<leader>fS", require("telescope.builtin").lsp_workspace_symbols,     desc = "Find workspace symbols" },
             --
             -- -- git
             { "<leader>cm", require("telescope.builtin").git_commits,               desc = "Git commits" },

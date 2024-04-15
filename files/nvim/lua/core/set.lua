@@ -15,11 +15,15 @@ opt.smartindent = true
 opt.tabstop = 4
 opt.softtabstop = 4
 
+-- Spell checking
+-- opt.spelllang = 'en_us'
+-- opt.spell = true
+
 opt.fillchars = { eob = " " }
 opt.ignorecase = true
 opt.smartcase = true
 opt.mouse = "a"
-opt.scrolloff = 10
+opt.scrolloff = 8
 opt.wrap = false
 opt.eol = false
 opt.fixeol = false

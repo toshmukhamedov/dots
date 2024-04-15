@@ -27,6 +27,16 @@ return {
         dependencies = { "nvim-lua/plenary.nvim" },
         cmd = { "TodoTrouble" },
         event = { "BufReadPost", "BufNewFile" },
-        config = true
+        opts = {
+            signs = false,
+            gui_style = {
+                fg = "BOLD",
+                bg = "NONE"
+            },
+            highlight = {
+                keyword = "fg",
+                after = ""
+            },
+        }
     },
 }

@@ -4,7 +4,7 @@ return {
     branch = "v3.x",
     keys = {
         -- focus
-        { "<leader>e", ":Neotree<CR>",        desc = "Focus NeoTree" },
+        { "<leader>e", ":Neotree dir=%:p:h:h<CR>",        desc = "Focus NeoTree" },
 
         -- toggle
         { "<C-n>",     ":Neotree toggle<CR>", desc = "Toggle NeoTree" },
@@ -33,6 +33,9 @@ return {
         require("neo-tree").setup({
             filesystem = {
                 hijack_netrw_behavior = 'open_current',
+                follow_current_file = {
+                    enabled = true,
+                },
                 filtered_items = {
                     visible = false, -- when true, they will just be displayed differently than normal items
                     hide_dotfiles = false,
@@ -84,10 +87,10 @@ return {
                         deleted   = "",
                         renamed   = "➜",
                         ignored   = "◌",
-                        unstaged  = "✗",
-                        staged    = "✓",
                         conflict  = "",
                         -- disabled
+                        staged    = "",
+                        unstaged  = "",
                         added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
                         modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
                         untracked = "",

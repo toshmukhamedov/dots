@@ -6,7 +6,7 @@ return {
         local colorscheme = require("onedark")
         colorscheme.setup({
             style = 'dark',
-            transparent = true,
+            transparent = false,
             code_style = {
                 comments = 'italic',
                 keywords = 'none',
