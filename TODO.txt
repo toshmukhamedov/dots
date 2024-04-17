@@ -1,0 +1,2 @@
+1. Add support for auto saving with auto-save.nvim
+

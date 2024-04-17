@@ -107,7 +107,7 @@ return {
                 end
 
                 if client.server_capabilities.inlayHintProvider then
-                    -- vim.lsp.inlay_hint.enable(bufnr, true)
+                    vim.lsp.inlay_hint.enable(bufnr, true)
                 end
 
                 -- lsp code actions
@@ -170,12 +170,12 @@ return {
                     typescript = {
                         inlayHints = {
                             includeInlayEnumMemberValueHints = true,
-                            includeInlayFunctionLikeReturnTypeHints = true,
-                            includeInlayFunctionParameterTypeHints = true,
-                            includeInlayParameterNameHints = "literals", -- 'none' | 'literals' | 'all';
-                            includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-                            includeInlayPropertyDeclarationTypeHints = true,
-                            includeInlayVariableTypeHints = true,
+                            includeInlayFunctionLikeReturnTypeHints = false,
+                            includeInlayFunctionParameterTypeHints = false,
+                            includeInlayParameterNameHints = "none", -- 'none' | 'literals' | 'all';
+                            includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                            includeInlayPropertyDeclarationTypeHints = false,
+                            includeInlayVariableTypeHints = false,
                         },
                     },
                 },

@@ -9,7 +9,7 @@ return {
             transparent = false,
             code_style = {
                 comments = 'italic',
-                keywords = 'none',
+                keywords = 'bold',
                 functions = 'none',
                 strings = 'none',
                 variables = 'none'

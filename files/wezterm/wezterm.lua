@@ -27,11 +27,11 @@ config.color_schemes = {
 }
 config.color_scheme = 'One Dark'
 config.font = wezterm.font_with_fallback {
-    'Cascadia Code',
+    'SF Mono',
     { family = 'Symbols Nerd Font', scale = 0.9 },
 }
 config.font_size = 13.3
-config.line_height = 1.2
+config.line_height = 1.3
 config.default_cursor_style = "BlinkingBar"
 config.force_reverse_video_cursor = true
 config.window_decorations = "RESIZE"
