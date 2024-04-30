@@ -23,4 +23,9 @@ return {
         version = false,
         config = true
     },
+    {
+        'echasnovski/mini.sessions',
+        version = false,
+        config = true
+    }
 }

@@ -4,7 +4,7 @@ return {
     branch = "v3.x",
     keys = {
         -- focus
-        { "<leader>e", ":Neotree dir=%:p:h:h<CR>",        desc = "Focus NeoTree" },
+        { "<leader>e", ":Neotree<CR>",        desc = "Focus NeoTree" },
 
         -- toggle
         { "<C-n>",     ":Neotree toggle<CR>", desc = "Toggle NeoTree" },
