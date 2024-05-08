@@ -16,8 +16,8 @@ set -gx PATH "/opt/homebrew/Cellar/postgresql@15/15.6_1/bin" $PATH
 # Better cd
 zoxide init fish | source
 
-# Shell history 
-atuin init fish --disable-up-arrow | source
+# fzf 
+fzf --fish | source
 
 # tabtab source for packages
 # uninstall by removing these lines

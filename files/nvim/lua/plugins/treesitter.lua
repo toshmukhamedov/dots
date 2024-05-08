@@ -13,7 +13,11 @@ return {
                 "yaml",
                 "toml",
                 "json",
-                "vimdoc"
+                "vimdoc",
+                "git_config",
+                "git_rebase",
+                "gitcommit",
+                "gitignore",
             },
             highlight = {
                 enable = true,
@@ -116,6 +120,17 @@ return {
 
         },
         config = function(_, opts)
+            vim.filetype.add({
+                filename = {
+                    [".env"] = "dotenv",
+                    ["vifmrc"] = "vim",
+                },
+                pattern = {
+                    [".*/kitty/.+%.conf"] = "bash",
+                    ["%.env%.[%w_.-]+"] = "dotenv",
+                },
+            })
+
             require("nvim-treesitter.configs").setup(opts)
         end,
     },
