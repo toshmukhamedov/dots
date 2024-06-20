@@ -160,7 +160,7 @@ return {
             end
 
             -- Typescript/Javascript
-            lspconfig.tsserver.setup {
+            lspconfig.vtsls.setup {
                 root_dir = require("lspconfig/util").root_pattern("package.json"),
                 on_attach = on_attach,
                 capabilities = capabilities,
