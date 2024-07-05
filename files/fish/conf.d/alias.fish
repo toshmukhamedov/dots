@@ -10,8 +10,8 @@ alias cat='bat --theme="OneHalfDark"'
 # Find 
 alias find='fd'
 
-# Modern ping 
-# alias ping='gping'
+# Neofetch
+alias neofetch='fastfetch'
 
 # Reload fish config
 alias reload='source $HOME/.config/fish/config.fish'

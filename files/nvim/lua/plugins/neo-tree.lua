@@ -2,13 +2,6 @@ return {
     "nvim-neo-tree/neo-tree.nvim",
     cmd = { "Neotree" },
     branch = "v3.x",
-    keys = {
-        -- focus
-        { "<leader>e", ":Neotree<CR>",        desc = "Focus NeoTree" },
-
-        -- toggle
-        { "<C-n>",     ":Neotree toggle<CR>", desc = "Toggle NeoTree" },
-    },
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended

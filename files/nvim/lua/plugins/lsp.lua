@@ -228,6 +228,17 @@ return {
                 root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
                 single_file_support = false
             }
+
+            -- typos
+            lspconfig.typos_lsp.setup({
+                -- Logging level of the language server. Logs appear in :LspLog. Defaults to error.
+                cmd_env = { RUST_LOG = "hint" },
+                init_options = {
+                    -- How typos are rendered in the editor, can be one of an Error, Warning, Info or Hint.
+                    -- Defaults to error.
+                    diagnosticSeverity = "Hint"
+                }
+            })
         end,
     },
     {
