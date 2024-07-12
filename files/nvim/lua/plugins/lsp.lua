@@ -217,6 +217,23 @@ return {
                         check = {
                             command = "clippy",
                         },
+                        inlayHints = {
+                            chainingHints = {
+                                enable = false
+                            },
+                            closingBraceHints = {
+                                enable = false
+                            },
+                            closureCaptureHints = {
+                                enable = false
+                            },
+                            parameterHints = {
+                                enable = false
+                            },
+                            typeHints = {
+                                enable = false
+                            }
+                        }
                     },
                 },
             }
