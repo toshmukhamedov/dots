@@ -8,8 +8,8 @@ set -gx PATH "/Users/abdugani/.local/bin" $PATH
 set -gx EDITOR "nvim"
 
 set -gx DOTS "$HOME/Developer/GitHub/dots"
-set -gx VOLTA_HOME "$HOME/.volta"
-set -gx PATH "$VOLTA_HOME/bin" $PATH
+#set -gx VOLTA_HOME "$HOME/.volta"
+#set -gx PATH "$VOLTA_HOME/bin" $PATH
 
 set -gx PATH "/opt/homebrew/Cellar/postgresql@15/15.6_1/bin" $PATH
 
@@ -23,6 +23,9 @@ fzf --fish | source
 # uninstall by removing these lines
 [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
-if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+# pnpm
+set -gx PNPM_HOME "/Users/abdugani/Library/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
 end
+# pnpm end
