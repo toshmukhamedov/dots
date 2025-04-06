@@ -1,0 +1,26 @@
+[
+  {
+    "context": "EmptyPane",
+    "bindings": {
+      "space f f": "file_finder::Toggle"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "space f f": "file_finder::Toggle",
+      "space f s": "outline::Toggle"
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      "cmd-t": "workspace::NewTerminal"
+    }
+  },
+  {
+    "bindings": {
+      "alt-cmd-o": "projects::OpenRecent"
+    }
+  }
+]
