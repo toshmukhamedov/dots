@@ -43,9 +43,7 @@
     "blinking": "off",
     "font_family": "Iosevka Term",
     "cursor_shape": "bar",
-    "font_fallbacks": [
-      "Symbols Nerd Font"
-    ]
+    "font_fallbacks": ["Symbols Nerd Font"]
   },
   "inlay_hints": {
     "enabled": false,
@@ -56,8 +54,10 @@
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
-        "checkOnSave": {
-          "command": "clippy"
+        "initialization_options": {
+          "check": {
+            "command": "clippy"
+          }
         }
       }
     }
@@ -74,15 +74,15 @@
   },
   "buffer_line_height": "comfortable",
   "confirm_quit": true,
-  "wrap_guides": [
-    100
-  ],
+  "wrap_guides": [100],
   "preferred_line_length": 100,
   "show_completions_on_input": true,
   "tab_size": 2,
   "remove_trailing_whitespace_on_save": true,
   "auto_indent_on_paste": false,
-  "prettier": {
-    "allowed": false
+  "languages": {
+    "Markdown": {
+      "remove_trailing_whitespace_on_save": false
+    }
   }
 }
