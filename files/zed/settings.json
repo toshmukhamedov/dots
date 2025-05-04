@@ -83,6 +83,14 @@
   "languages": {
     "Markdown": {
       "remove_trailing_whitespace_on_save": false
+    },
+    "Nix": {
+      "formatter": {
+        "external": {
+          "command": "nixfmt",
+          "arguments": ["--quiet", "--"]
+        }
+      }
     }
   }
 }
