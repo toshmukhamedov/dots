@@ -61,4 +61,16 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  # Shell prompt
+  programs.starship.enable = true;
+
+  # Smart `cd`
+  programs.zoxide.enable = true;
+
+  # Fuzzy finder
+  programs.fzf.enable = true;
+
+  # Better `ls`
+  programs.eza.enable = true;
 }

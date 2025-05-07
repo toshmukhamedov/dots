@@ -26,15 +26,30 @@
         {
           # List packages installed in system profile. To search by name, run:
           # $ nix-env -qaP | grep wget
-          environment.systemPackages = [
-            pkgs.vim
-            pkgs.nixd
-            pkgs.nil
-            pkgs.nixfmt-rfc-style
+          environment.systemPackages = with pkgs; [
+            neovim
+            nixd
+            nil
+            nixfmt-rfc-style
+            fnm
+            fastfetch
+            glab
+          ];
+
+          # Fonts
+          fonts.packages = [
+            (pkgs.nerdfonts.override {
+              fonts = [
+                "Iosevka"
+                "IosevkaTerm"
+              ];
+            })
           ];
 
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
+
+          security.pam.enableSudoTouchIdAuth = true;
 
           # Enable alternative shell support in nix-darwin.
           programs.fish.enable = true;
@@ -61,6 +76,11 @@
         };
     in
     {
+
+      # Reusable darwin modules you might want to export
+      # These are usually stuff you would upstream into nixpkgs
+      darwinModules = import ./modules/darwin;
+
       # Build darwin flake using:
       # $ darwin-rebuild build --flake .#Abduganis-MacBook-Pro
       darwinConfigurations."Abduganis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
@@ -71,11 +91,8 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.abdugani = import ./home.nix;
-
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-
           }
+          self.darwinModules.homebrew
         ];
       };
     };
