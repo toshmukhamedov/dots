@@ -18,6 +18,10 @@ let
     "Xcode" = 497799835;
     "Telegram" = 747648890;
     "iMovie" = 408981434;
+    "Craft" = 1487937127;
+
+    # iPhone/iPad Apps
+    "X" = 333903271;
   };
 in
 {

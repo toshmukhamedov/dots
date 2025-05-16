@@ -34,6 +34,8 @@
             fnm
             fastfetch
             glab
+            yt-dlp
+            bat
           ];
 
           # Fonts
