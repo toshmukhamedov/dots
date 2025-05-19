@@ -2,13 +2,13 @@
   description = "Abdugani's system flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
-    nix-darwin.url = "github:nix-darwin/nix-darwin/nix-darwin-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-25.05-darwin";
+    nix-darwin.url = "github:nix-darwin/nix-darwin/master";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     # Home manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -36,25 +36,32 @@
             glab
             yt-dlp
             bat
+            ripgrep
+            fd
           ];
 
           # Fonts
           fonts.packages = [
-            (pkgs.nerdfonts.override {
-              fonts = [
-                "Iosevka"
-                "IosevkaTerm"
-              ];
-            })
+            # deprecated (24.11)
+            # (pkgs.nerdfonts.override {
+            #   fonts = [
+            #     "Iosevka"
+            #     "IosevkaTerm"
+            #   ];
+            # })
+            pkgs.nerd-fonts.iosevka
+            pkgs.nerd-fonts.victor-mono
           ];
 
           # Necessary for using flakes on this system.
           nix.settings.experimental-features = "nix-command flakes";
 
-          security.pam.enableSudoTouchIdAuth = true;
+          security.pam.services.sudo_local.touchIdAuth = true;
 
           # Enable alternative shell support in nix-darwin.
           programs.fish.enable = true;
+
+          system.primaryUser = "abdugani";
 
           # Set Fish as the default shell
           users.knownUsers = [ "abdugani" ];

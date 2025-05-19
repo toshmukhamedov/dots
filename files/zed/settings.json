@@ -44,9 +44,9 @@
   "buffer_font_family": "Iosevka Nerd Font",
   "terminal": {
     "blinking": "off",
-    "font_family": "IosevkaTerm Nerd Font",
-    "cursor_shape": "bar",
-    "font_fallbacks": ["Symbols Nerd Font"]
+    "font_family": "VictorMono Nerd Font",
+    "font_weight": 600,
+    "cursor_shape": "bar"
   },
   "inlay_hints": {
     "enabled": false,

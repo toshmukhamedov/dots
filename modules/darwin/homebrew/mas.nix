@@ -15,13 +15,14 @@ let
     "Keynote" = 409183694;
 
     # Other
-    "Xcode" = 497799835;
+    # "Xcode" = 497799835;
     "Telegram" = 747648890;
     "iMovie" = 408981434;
     "Craft" = 1487937127;
 
     # iPhone/iPad Apps
-    "X" = 333903271;
+    # not supported yet https://github.com/mas-cli/mas/issues/721
+    # "X" = 333903271;
   };
 in
 {

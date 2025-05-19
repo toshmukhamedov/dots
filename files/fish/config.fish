@@ -5,14 +5,14 @@ starship init fish | source
 set -gx fish_greeting ""
 set -gx PATH "/Users/abdugani/.cargo/bin" $PATH
 set -gx PATH "/Users/abdugani/.local/bin" $PATH
-set -gx EDITOR "nvim"
+set -gx EDITOR "zed --wait"
 
-set -gx DOTS "$HOME/Developer/GitHub/dots"
+set -gx DOTS "$HOME/Developer/github.com/me/dots"
 
 # Better cd
 zoxide init fish | source
 
-# fzf 
+# fzf
 fzf --fish | source
 
 # tabtab source for packages
