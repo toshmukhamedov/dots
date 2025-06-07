@@ -24,16 +24,15 @@
     "default_profile": "minimal",
     "default_model": {
       "provider": "google",
-      "model": "gemini-1.5-flash"
+      "model": "gemini-2.5-flash-preview-04-17"
     },
     "commit_message_model": {
       "provider": "google",
-      "model": "gemini-2.0-flash"
+      "model": "gemini-2.5-flash-preview-04-17"
     },
     "version": "2"
   },
   "vim_mode": true,
-  "base_keymap": "JetBrains",
   "features": {
     "edit_prediction_provider": "none"
   },
@@ -41,11 +40,11 @@
   "theme": "One Dark",
   "buffer_font_size": null,
   "auto_update": true,
+  "base_keymap": "JetBrains",
   "buffer_font_family": "Iosevka Nerd Font",
   "terminal": {
     "blinking": "off",
-    "font_family": "VictorMono Nerd Font",
-    "font_weight": 600,
+    "font_family": "IosevkaTerm Nerd Font",
     "cursor_shape": "bar"
   },
   "inlay_hints": {
@@ -57,10 +56,8 @@
   "lsp": {
     "rust-analyzer": {
       "initialization_options": {
-        "initialization_options": {
-          "check": {
-            "command": "clippy"
-          }
+        "check": {
+          "command": "clippy"
         }
       }
     }
@@ -95,5 +92,7 @@
         }
       }
     }
-  }
+  },
+  "show_whitespaces": "none",
+  "language_servers": ["!biome", "!typescript-language-server", "..."]
 }

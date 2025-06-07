@@ -72,11 +72,11 @@ M.base46 = {
 -- M.nvdash = { load_on_startup = true }
 M.ui = {
   statusline = {
-    theme = "minimal"
+    theme = "vscode_colored"
   }
 }
 M.colorify = {
-  -- enabled = false
+  enabled = false
 }
 
 

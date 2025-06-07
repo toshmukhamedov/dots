@@ -20,6 +20,11 @@ let
     "iMovie" = 408981434;
     "Craft" = 1487937127;
 
+    # Utilities
+    "System Color Picker" = 1545870783;
+    "Gifski" = 1351639930;
+    "Tomito" = 1526042938;
+
     # iPhone/iPad Apps
     # not supported yet https://github.com/mas-cli/mas/issues/721
     # "X" = 333903271;

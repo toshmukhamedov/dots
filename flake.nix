@@ -38,6 +38,8 @@
             bat
             ripgrep
             fd
+            rustup
+            github-cli
           ];
 
           # Fonts
@@ -50,7 +52,7 @@
             #   ];
             # })
             pkgs.nerd-fonts.iosevka
-            pkgs.nerd-fonts.victor-mono
+            pkgs.nerd-fonts.iosevka-term
           ];
 
           # Necessary for using flakes on this system.
