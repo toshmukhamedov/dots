@@ -11,7 +11,7 @@ let
     "github"
     "ghostty"
     "obs"
-    "docker"
+    "orbstack"
     "font-symbols-only-nerd-font"
     "mac-mouse-fix"
     "maccy"
