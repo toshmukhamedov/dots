@@ -18,7 +18,6 @@ let
     # "Xcode" = 497799835;
     "Telegram" = 747648890;
     "iMovie" = 408981434;
-    "Craft" = 1487937127;
 
     # Utilities
     "System Color Picker" = 1545870783;
