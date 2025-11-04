@@ -86,3 +86,6 @@ symbol = " "
 
 [spack]
 symbol = "🅢 "
+
+[direnv]
+disabled = false

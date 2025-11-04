@@ -17,3 +17,5 @@ alias neofetch='fastfetch'
 alias reload='source $HOME/.config/fish/config.fish'
 
 alias clean_nvim='rm -rf ~/.config/nvim ~/.local/state/nvim ~/.local/share/nvim ~/.cache/nvim'
+
+alias tailscale='/Applications/Tailscale.app/Contents/MacOS/Tailscale'

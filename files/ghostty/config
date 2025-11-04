@@ -4,3 +4,5 @@ cursor-style = bar
 theme = default
 confirm-close-surface = false
 adjust-cell-height = 24%
+macos-option-as-alt = true
+macos-titlebar-style = tabs

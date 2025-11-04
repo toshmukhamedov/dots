@@ -7,6 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "use_system_window_tabs": true,
   "project_panel": {
     "dock": "left",
     "scrollbar": {
@@ -22,6 +23,7 @@
     }
   },
   "agent": {
+    "play_sound_when_agent_done": true,
     "default_profile": "minimal",
     "default_model": {
       "provider": "google",
@@ -34,7 +36,7 @@
   },
   "vim_mode": true,
   "features": {
-    "edit_prediction_provider": "none"
+    "edit_prediction_provider": "supermaven"
   },
   "autosave": "off",
   "theme": "One Dark",
@@ -95,5 +97,5 @@
   },
   "show_whitespaces": "none",
   "language_servers": ["!biome", "!typescript-language-server", "..."],
-  "disable_ai": true
+  "disable_ai": false
 }
